@@ -18,7 +18,7 @@
  * Form for editing questionnaire_manager block instances.
  *
  * @package   block_questionnaire_manager
- * @copyright 2013 Bas Brands, bas@sonsbeekmedia.nl
+ * @copyright 2013 Learning Technology Services, www.lts.ie - Lead Developer: Bas Brands
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
