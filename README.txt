@@ -7,6 +7,8 @@ Author: Learning Technology Services, www.lts.ie
 Lead Developer: Bas Brands, www.basbrands.nl
 Lead Tester: Karen Holland, www.lts.ie
 
+Moodle version: 2.4
+
 INTRO
 
 This block has been created to enable quick copying / hiding / showing of a parent questionnaire in all course sections.
