@@ -5,7 +5,6 @@ Questionnaire Manager block
 License: GPL v3
 Author: Learning Technology Services, www.lts.ie
 Lead Developer: Bas Brands, www.basbrands.nl
-Lead Tester: Karen Holland, www.lts.ie
 
 Moodle version: 2.4
 
