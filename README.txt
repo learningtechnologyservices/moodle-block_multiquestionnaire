@@ -10,7 +10,7 @@ Moodle version: 2.4
 
 INTRO
 
-This block has been created to enable quick copying / hiding / showing of a parent questionnaire in all course sections.
+This block has been created to enable quick copying / hiding / showing of a parent questionnaire in all course sections. This can be used to set up a master questionnaire on a separate master course and then clone it to any other courses as needed.
 
 
 USAGE
