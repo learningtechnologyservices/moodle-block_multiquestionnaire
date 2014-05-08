@@ -8,6 +8,13 @@ Lead Developer: Bas Brands
 
 Moodle version: 2.4
 
+Development sponsored by DCU, http://www.dcu.ie [^]
+
+Prerequisite
+
+In order for Questionnaire Manager Block to work, the Questionnaire mod plugin needs to be already installed from: 
+https://moodle.org/plugins/pluginversions.php?plugin=mod_questionnaire
+
 INTRO
 
 This block has been created to enable quick copying / hiding / showing of a parent questionnaire in all course sections.
