@@ -27,4 +27,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->version   = 2013112200;
 $plugin->requires  = 2012120300;
+$plugin->release = '1.1 (Build: 2013112200)';
+$plugin->maturity = MATURITY_STABLE;
 $plugin->component = 'block_questionnaire_manager';
