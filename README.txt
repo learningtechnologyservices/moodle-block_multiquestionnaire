@@ -6,6 +6,8 @@ License: GPL v3
 Author: Learning Technology Services, www.lts.ie
 Lead Developer: Bas Brands
 
+New comment
+
 Moodle version: 2.4
 
 Development sponsored by DCU, http://www.dcu.ie [^]
