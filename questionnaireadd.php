@@ -17,15 +17,14 @@
 /**
  * Version details
  *
- * @package    block
- * @subpackage questionnaire manager
+ * @package    block_multiquestionnaire
  * @copyright  2013 Learning Technology Services, www.lts.ie - Lead Developer: Bas Brands
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require_once("../../config.php");
 require_once($CFG->dirroot . "/mod/questionnaire/lib.php");
-require_once($CFG->dirroot . "/blocks/questionnaire_manager/lib.php");
+require_once($CFG->dirroot . "/blocks/multiquestionnaire/lib.php");
 require_once($CFG->dirroot . "/course/lib.php");
 require_once($CFG->libdir.'/csvlib.class.php');
 
@@ -45,15 +44,15 @@ $blockid = optional_param('b', 0, PARAM_INT);
 $questionnairerecord = $DB->get_record("questionnaire_survey", array('id' => $questionnaire));
 
 $context = get_context_instance_by_id($contextid);
-require_capability('block/questionnaire_manager:uploadcsv', $context);
+require_capability('block/multiquestionnaire:uploadcsv', $context);
 $course = $DB->get_record('course', array('id' => $courseid));
 
 $fs = get_file_storage();
-$files = $fs->get_area_files($contextid, 'block_questionnaire_manager', 'coursecsv', $courseid);
+$files = $fs->get_area_files($contextid, 'block_multiquestionnaire', 'coursecsv', $courseid);
 
 $filecontent = false;
 foreach ($files as $file) {
-    $url = "{$CFG->wwwroot}/pluginfile.php/{$file->get_contextid()}/block_questionnaire_manager/coursecsv/";
+    $url = "{$CFG->wwwroot}/pluginfile.php/{$file->get_contextid()}/block_multiquestionnaire/coursecsv/";
     $filename = $file->get_filename();
 
     if ($filename == ".") {
@@ -64,7 +63,7 @@ foreach ($files as $file) {
 
 require_login($course);
 
-$PAGE->set_url('/blocks/questionnaire_manager/questionnaireadd.php', array('id' => $courseid));
+$PAGE->set_url('/blocks/multiquestionnaire/questionnaireadd.php', array('id' => $courseid));
 $PAGE->set_title(format_string('Questionnaire Manager'));
 $PAGE->set_heading(format_string('Questionnaire Manager'));
 $PAGE->set_context($context);
@@ -102,7 +101,7 @@ if ($readcount) {
     }
 
     if (empty($usefield)) {
-        echo get_string('novalidfields', 'block_questionnaire_manager');
+        echo get_string('novalidfields', 'block_multiquestionnaire');
         echo html_writer::link(new moodle_url('/course/view.php', array('id' => $courseid)), get_string('back'));
         echo $OUTPUT->footer();
         exit(0);
@@ -124,24 +123,24 @@ if ($readcount) {
     }
 
 } else {
-    $message .= get_string('nocsv', 'block_questionnaire_manager');
+    $message .= get_string('nocsv', 'block_multiquestionnaire');
 }
 
 switch ($action) {
     case 'duplicate':
-        questionnaire_manager_duplicate_questionnaires($questionnairecourses);
+        multiquestionnaire_duplicate_questionnaires($questionnairecourses);
         break;
     case 'hide':
-        questionnaire_manager_hide_questionnaires($questionnairecourses, 0);
+        multiquestionnaire_hide_questionnaires($questionnairecourses, 0);
         break;
     case 'show':
-        questionnaire_manager_hide_questionnaires($questionnairecourses, 1);
+        multiquestionnaire_hide_questionnaires($questionnairecourses, 1);
         break;
     case 'copyblock':
-        questionnaire_manager_copy_questionnaire_manager($questionnairecourses, $blockid);
+        multiquestionnaire_copy_multiquestionnaire($questionnairecourses, $blockid);
         break;
     case 'delete':
-        questionnaire_manager_remove_questionnaires($questionnairecourses);
+        multiquestionnaire_remove_questionnaires($questionnairecourses);
         break;
 }
 

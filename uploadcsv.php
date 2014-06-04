@@ -17,15 +17,14 @@
 /**
  * Version details
  *
- * @package    block
- * @subpackage questionnaire manager
+ * @package    block_multiquestionnaire
  * @copyright  2013 Learning Technology Services, www.lts.ie - Lead Developer: Bas Brands
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require_once("../../config.php");
 require_once("$CFG->libdir/formslib.php");
-require_once("$CFG->dirroot/blocks/questionnaire_manager/uploadcsv_form.php");
+require_once("$CFG->dirroot/blocks/multiquestionnaire/uploadcsv_form.php");
 global $COURSE, $CFG, $DB;
 
 $courseid  = optional_param('courseid', 0, PARAM_INT);
@@ -37,7 +36,7 @@ require_course_login($course);
 
 $context = get_context_instance_by_id($contextid);
 
-require_capability('block/questionnaire_manager:uploadcsv', $context);
+require_capability('block/multiquestionnaire:uploadcsv', $context);
 
 $data = new stdClass();
 $data->coursename = $course->fullname;
@@ -49,7 +48,7 @@ $options = array('subdirs' => 1,
                  'accepted_types' => '*.csv',
                  'return_types' => FILE_INTERNAL);
 
-$mform = new questionnaire_manager_upload_form($CFG->wwwroot . '/blocks/questionnaire_manager/uploadcsv.php',
+$mform = new multiquestionnaire_upload_form($CFG->wwwroot . '/blocks/multiquestionnaire/uploadcsv.php',
 array('courseid' => $courseid));
 
 $entry = new stdClass;
@@ -58,7 +57,7 @@ $entry->courseid = $course->id;
 
 $draftitemid = file_get_submitted_draft_itemid('coursecsv');
 
-file_prepare_draft_area($draftitemid, $context->id, 'block_questionnaire_manager', 'coursecsv', $course->id,
+file_prepare_draft_area($draftitemid, $context->id, 'block_multiquestionnaire', 'coursecsv', $course->id,
 array('subdirs' => 0, 'maxbytes' => 10240000, 'maxfiles' => 2));
 $entry->coursecsv = $draftitemid;
 
@@ -69,20 +68,20 @@ if ($mform->is_cancelled()) {
     redirect(new moodle_url('/course/view.php', array('id' => $course->id)));
 
 } else if ($data = $mform->get_data()) {
-    file_save_draft_area_files($data->coursecsv, $context->id, 'block_questionnaire_manager', 'coursecsv',
+    file_save_draft_area_files($data->coursecsv, $context->id, 'block_multiquestionnaire', 'coursecsv',
         $course->id, array('subdirs' => 0, 'maxbytes' => 10240000, 'maxfiles' => 1));
     redirect(new moodle_url('/course/view.php', array('id' => $course->id)));
 }
 
-$PAGE->set_url('/blocks/questionnaire_manager/uploadcsv.php', array('courseid' => $course->id, 'contextid' => $contextid));
+$PAGE->set_url('/blocks/multiquestionnaire/uploadcsv.php', array('courseid' => $course->id, 'contextid' => $contextid));
 $PAGE->set_context($context);
-$PAGE->set_title(get_string('upload_csv', 'block_questionnaire_manager'));
-$PAGE->set_heading(get_string('upload_csv', 'block_questionnaire_manager'));
+$PAGE->set_title(get_string('upload_csv', 'block_multiquestionnaire'));
+$PAGE->set_heading(get_string('upload_csv', 'block_multiquestionnaire'));
 
-$PAGE->set_title(get_string('upload_csv', 'block_questionnaire_manager'));
-$PAGE->navbar->add(get_string('uploadcsv', 'block_questionnaire_manager'), '', navigation_node::TYPE_CUSTOM);
+$PAGE->set_title(get_string('upload_csv', 'block_multiquestionnaire'));
+$PAGE->navbar->add(get_string('uploadcsv', 'block_multiquestionnaire'), '', navigation_node::TYPE_CUSTOM);
 
-echo $OUTPUT->header(get_string('upload_csv', 'block_questionnaire_manager'));
+echo $OUTPUT->header(get_string('upload_csv', 'block_multiquestionnaire'));
 
 $mform->display();
 echo $result;

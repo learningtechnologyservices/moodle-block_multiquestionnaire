@@ -17,8 +17,7 @@
 /**
  * Version details
  *
- * @package    block
- * @subpackage questionnaire manager
+ * @package    block_multiquestionnaire
  * @copyright  2013 Learning Technology Services, www.lts.ie - Lead Developer: Bas Brands
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,6 +26,9 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->version   = 2013112200;
 $plugin->requires  = 2012120300;
-$plugin->release = '1.1 (Build: 2013112200)';
+$plugin->release = 'v2.4 r1.1 (Build: 2013112200)';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->component = 'block_questionnaire_manager';
+$plugin->component = 'block_multiquestionnaire';
+$plugin->dependencies = array(
+    'mod_questionnaire' => '2013051901'
+); // this requires questionnaire for moodle 2.3 at least

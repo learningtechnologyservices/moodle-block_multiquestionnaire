@@ -17,8 +17,7 @@
 /**
  * Version details
  *
- * @package    block
- * @subpackage questionnaire manager
+ * @package    block_multiquestionnaire
  * @copyright  2013 Learning Technology Services, www.lts.ie - Lead Developer: Bas Brands
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

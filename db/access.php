@@ -17,8 +17,7 @@
 /**
  * Version details
  *
- * @package    block
- * @subpackage questionnaire manager
+ * @package    block_multiquestionnaire
  * @copyright  2013 Learning Technology Services, www.lts.ie - Lead Developer: Bas Brands
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
 
-    'block/questionnaire_manager:uploadcsv' => array(
+    'block/multiquestionnaire:uploadcsv' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' => array(
@@ -35,7 +34,7 @@ $capabilities = array(
         ),
     ),
 
-    'block/questionnaire_manager:myaddinstance' => array(
+    'block/multiquestionnaire:myaddinstance' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' => array(
@@ -43,7 +42,7 @@ $capabilities = array(
         ),
     ),
 
-    'block/questionnaire_manager:addinstance' => array(
+    'block/multiquestionnaire:addinstance' => array(
         'riskbitmask' => RISK_SPAM | RISK_XSS,
         'captype' => 'write',
         'contextlevel' => CONTEXT_BLOCK,

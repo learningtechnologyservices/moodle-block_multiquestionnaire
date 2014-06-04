@@ -17,8 +17,7 @@
 /**
  * Version details
  *
- * @package    block
- * @subpackage questionnaire manager
+ * @package    block_multiquestionnaire
  * @copyright  2013 Learning Technology Services, www.lts.ie - Lead Developer: Bas Brands
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -29,7 +28,7 @@ global $CFG, $COURSE, $USER;
 
 require_once($CFG->dirroot.'/mod/questionnaire/lib.php');
 require_once($CFG->dirroot.'/mod/questionnaire/questionnaire.class.php');
-require_once($CFG->dirroot.'/blocks/questionnaire_manager/reportlib.php');
+require_once($CFG->dirroot.'/blocks/multiquestionnaire/reportlib.php');
 
 $instance = optional_param('instance', false, PARAM_INT);
 $action = optional_param('action', 'vall', PARAM_ALPHA);
@@ -105,7 +104,7 @@ $currentsessiongroupid = -1;
 require_login($course);
 $context = get_context_instance_by_id($instance);
 
-$PAGE->set_url('/blocks/questionnaire_manager/report.php');
+$PAGE->set_url('/blocks/multiquestionnaire/report.php');
 $PAGE->set_title(format_string('Questionnaire Manager Report'));
 $PAGE->set_heading(format_string('Questionnaire Manager Report'));
 // Moodle 2.5.

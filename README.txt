@@ -1,12 +1,10 @@
-moodle-block_questionnaire_manager
+moodle-block_multiquestionnaire
 ==================================
-Questionnaire Manager block
+Multiquestionnaire Manager block
 
 License: GPL v3
 Author: Learning Technology Services, www.lts.ie
 Lead Developer: Bas Brands
-
-New comment updated again
 
 Moodle version: 2.4
 
@@ -14,7 +12,7 @@ Development sponsored by DCU, http://www.dcu.ie [^]
 
 Prerequisite
 
-In order for Questionnaire Manager Block to work, the Questionnaire mod plugin needs to be already installed from: 
+In order for Multiquestionnaire Manager Block to work, the Questionnaire mod plugin needs to be already installed from: 
 https://moodle.org/plugins/pluginversions.php?plugin=mod_questionnaire
 
 INTRO
@@ -26,13 +24,13 @@ This can be used to set up a master questionnaire on a separate master course an
 USAGE
 
 Install the block in the /blocks/ folder
-Unzip the plugin into folder "questionnaire_manager"
+Unzip the plugin into folder "multiquestionnaire"
 Navigate to Site Administration -> Notifications to start installation
 
 Create a new course and add your Questionnaire
 
-Turn editing on and add the Questionnaire Manager block
-Click on the "gear" icon to configure the Questionnaire Manager block
+Turn editing on and add the Multiquestionnaire Manager block
+Click on the "gear" icon to configure the Multiquestionnaire Manager block
 Select your Questionnaire
 
 Upload your CSV file and save

@@ -15,23 +15,23 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Form for editing questionnaire_manager block instances.
+ * Form for editing multiquestionnaire block instances.
  *
- * @package   block_questionnaire_manager
+ * @package   block_multiquestionnaire
  * @copyright 2013 Learning Technology Services, www.lts.ie - Lead Developer: Bas Brands
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-class block_questionnaire_manager_edit_form extends block_edit_form {
+class block_multiquestionnaire_edit_form extends block_edit_form {
     protected function specific_definition($mform) {
         global $CFG, $DB, $COURSE;
 
-        // Fields for editing questionnaire_manager block title and contents.
+        // Fields for editing multiquestionnaire block title and contents.
         $mform->addElement('header', 'configheader', get_string('blocksettings', 'block'));
 
         $context = context_course::instance($COURSE->id);
 
-        if (has_capability('block/questionnaire_manager:uploadcsv', $context)) {
+        if (has_capability('block/multiquestionnaire:uploadcsv', $context)) {
             $addquestionnaires = $DB->get_records('questionnaire', array('course' => $COURSE->id));
             $questionnaires = array();
             foreach ($addquestionnaires as $aq) {
@@ -40,7 +40,7 @@ class block_questionnaire_manager_edit_form extends block_edit_form {
 
             if (count($questionnaires > 0)) {
                 $mform->addElement('select', 'config_sel_questionnaire',
-                    get_string('sel_questionnaire', 'block_questionnaire_manager'), $questionnaires);
+                    get_string('sel_questionnaire', 'block_multiquestionnaire'), $questionnaires);
             }
         }
 

@@ -17,8 +17,7 @@
 /**
  * Version details
  *
- * @package    block
- * @subpackage questionnaire manager
+ * @package    block_multiquestionnaire
  * @copyright  2013 Learning Technology Services, www.lts.ie - Lead Developer: Bas Brands
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -36,7 +35,7 @@ if (!$module = $DB->get_record("modules", array('name' => 'questionnaire'))) {
  * @param int $courseid, id of current course
  */
 
-function questionnaire_manager_get_course_questionnaires($courseid) {
+function multiquestionnaire_get_course_questionnaires($courseid) {
     global $module, $DB;
     if (!$module = $DB->get_record("modules", array('name' => 'questionnaire'))) {
         error("This module type doesn't exist");
@@ -59,7 +58,7 @@ function questionnaire_manager_get_course_questionnaires($courseid) {
  * @param object $context
  */
 
-function block_questionnaire_manager_get_file_areas($course, $cm, $context) {
+function block_multiquestionnaire_get_file_areas($course, $cm, $context) {
     $areas = array();
     $areas['coursecsv'] = 'coursecsv';
     return $areas;
@@ -76,7 +75,7 @@ function block_questionnaire_manager_get_file_areas($course, $cm, $context) {
  * @param object $forcedownload
  * @param object $options
  */
-function block_questionnaire_manager_pluginfile($course, $cm, $context, $filearea, array $args, $forcedownload,
+function block_multiquestionnaire_pluginfile($course, $cm, $context, $filearea, array $args, $forcedownload,
 array $options=array()) {
     global $DB, $CFG, $USER;
 
@@ -88,7 +87,7 @@ array $options=array()) {
 
     if ($filearea === 'coursecsv') {
 
-        $fullpath = "/$context->id/block_questionnaire_manager/$filearea/$course->id/$args[1]";
+        $fullpath = "/$context->id/block_multiquestionnaire/$filearea/$course->id/$args[1]";
 
         $fs = get_file_storage();
 
@@ -107,7 +106,7 @@ array $options=array()) {
  * @param array $questionnairecourses
  * @param int $hide
  */
-function questionnaire_manager_hide_questionnaires($questionnairecourses, $hide) {
+function multiquestionnaire_hide_questionnaires($questionnairecourses, $hide) {
     global $module, $questionnaire, $message, $DB;
 
     $count = '';
@@ -137,7 +136,7 @@ function questionnaire_manager_hide_questionnaires($questionnairecourses, $hide)
  * @param array $questionnairecourses
  * @param int $blockid
  */
-function questionnaire_manager_copy_questionnaire_manager($questionnairecourses, $blockid) {
+function multiquestionnaire_copy_multiquestionnaire($questionnairecourses, $blockid) {
     global $message, $DB;
 
     if (!$sourceblock = $DB->get_record("block_instances", array("id" => $blockid))) {
@@ -153,7 +152,7 @@ function questionnaire_manager_copy_questionnaire_manager($questionnairecourses,
         $course = $DB->get_record("course", array("id" => $qcourse));
         $coursecontext = context_course::instance($course->id);
 
-        if ($DB->get_records('block_instances', array('blockname' => 'questionnaire_manager',
+        if ($DB->get_records('block_instances', array('blockname' => 'multiquestionnaire',
           'parentcontextid' => $coursecontext->id))) {
             $message .= "$course->fullname has this block already<br>";
             continue;
@@ -172,7 +171,7 @@ function questionnaire_manager_copy_questionnaire_manager($questionnairecourses,
  *
  * @param $course, id of course
  */
-function questionnaire_manager_questionnaire_already_added($course) {
+function multiquestionnaire_questionnaire_already_added($course) {
     global $module, $questionnaire, $DB;
 
     if ($instances = $DB->get_records_select("course_modules", 'module = '. $module->id .' AND course = ' .$course)) {
@@ -192,7 +191,7 @@ function questionnaire_manager_questionnaire_already_added($course) {
  *
  * @param array $questionnairecourses
  */
-function questionnaire_manager_duplicate_questionnaires($questionnairecourses) {
+function multiquestionnaire_duplicate_questionnaires($questionnairecourses) {
     global $module, $questionnaire, $questionnairerecord, $message, $DB;
 
     $coursequestionnaire = $DB->get_record('questionnaire',
@@ -208,8 +207,8 @@ function questionnaire_manager_duplicate_questionnaires($questionnairecourses) {
 
         $course = $DB->get_record("course", array("id" => $qcourse));
 
-        if (questionnaire_manager_questionnaire_already_added($qcourse)) {
-            $message .= get_string('isadded', 'block_questionnaire_manager', $course->fullname);
+        if (multiquestionnaire_questionnaire_already_added($qcourse)) {
+            $message .= get_string('isadded', 'block_multiquestionnaire', $course->fullname);
             continue;
         }
 
@@ -297,7 +296,7 @@ function questionnaire_manager_duplicate_questionnaires($questionnairecourses) {
 }
 
 
-function questionnaire_manager_remove_questionnaires($questionnairecourses) {
+function multiquestionnaire_remove_questionnaires($questionnairecourses) {
     // Delete disabled for now.
     return true;
     global $CFG, $module, $questionnaire, $DB, $message;
@@ -313,7 +312,7 @@ function questionnaire_manager_remove_questionnaires($questionnairecourses) {
                 if ($questionnaireref = $DB->get_record('questionnaire', array('id' => $instance->instance))) {
                     if ($questionnaireref->sid == $questionnaire) {
                         if (delete_course_module($instance->id) && questionnaire_delete_instance($questionnaireref->id)) {
-                            $message .= get_string('deleted', 'block_questionnaire_manager', $course->fullname);
+                            $message .= get_string('deleted', 'block_multiquestionnaire', $course->fullname);
                             add_to_log($course->id, $questionnaireref->name, "deleted",
                               "", $questionnaireref->id, $instance->instance);
                         }
